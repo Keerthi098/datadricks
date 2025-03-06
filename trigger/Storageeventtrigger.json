@@ -1,0 +1,24 @@
+{
+	"name": "Storageeventtrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "copyFactCsvOnly",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/gitoutput/blobs/csvfiles/fact2.csv",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/fac761bc-591f-4960-a223-235bf8f2fced/resourceGroups/keerthinyctaxi/providers/Microsoft.Storage/storageAccounts/anvitaxidatalake",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

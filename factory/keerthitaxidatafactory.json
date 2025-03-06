@@ -1,0 +1,9 @@
+{
+	"name": "keerthitaxidatafactory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "aebfe18b-46b2-4bff-8efa-b88bc1cdafd0",
+		"tenantId": "bdf324ab-a446-4e48-b4b0-d4be7fcddeea"
+	}
+}
