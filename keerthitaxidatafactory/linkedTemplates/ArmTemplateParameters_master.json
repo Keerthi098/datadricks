@@ -8,6 +8,9 @@
 		"AzureDataLakeStorage_accountKey": {
 			"value": ""
 		},
+		"SQLdatabase_Keerthi_password": {
+			"value": ""
+		},
 		"AzureDataLakeStorage_properties_typeProperties_url": {
 			"value": "https://anvitaxidatalake.dfs.core.windows.net/"
 		},
@@ -25,6 +28,18 @@
 		},
 		"triggermainpipleline_properties_typeProperties_scope": {
 			"value": "/subscriptions/fac761bc-591f-4960-a223-235bf8f2fced/resourceGroups/keerthinyctaxi/providers/Microsoft.Storage/storageAccounts/anvitaxidatalake"
+		},
+		"LS_GIT_CARSALES_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/"
+		},
+		"SQLdatabase_Keerthi_properties_typeProperties_server": {
+			"value": "carsalesserver10.database.windows.net"
+		},
+		"SQLdatabase_Keerthi_properties_typeProperties_database": {
+			"value": "carsales"
+		},
+		"SQLdatabase_Keerthi_properties_typeProperties_userName": {
+			"value": "Adminambi"
 		},
 		"containerUri": {
 			"value": ""
