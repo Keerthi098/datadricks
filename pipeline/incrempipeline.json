@@ -38,7 +38,10 @@
 					},
 					"dataset": {
 						"referenceName": "ds_azuresqldb_carsales",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "WATER_TABLE"
+						}
 					}
 				}
 			},
