@@ -19,9 +19,25 @@
 			"type": "string",
 			"defaultValue": "https://anvitaxidatalake.dfs.core.windows.net/"
 		},
+		"LS_GIT_CARSALES_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/"
+		},
 		"Nyc_API_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://d37ci6vzurychx.cloudfront.net/"
+		},
+		"SQLdatabase_Keerthi_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "carsalesserver10.database.windows.net"
+		},
+		"SQLdatabase_Keerthi_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "carsales"
+		},
+		"SQLdatabase_Keerthi_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Adminambi"
 		},
 		"linkedservicegit_properties_typeProperties_url": {
 			"type": "string",
@@ -38,22 +54,6 @@
 		"triggermainpipleline_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/fac761bc-591f-4960-a223-235bf8f2fced/resourceGroups/keerthinyctaxi/providers/Microsoft.Storage/storageAccounts/anvitaxidatalake"
-		},
-		"LS_GIT_CARSALES_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://raw.githubusercontent.com/"
-		},
-		"SQLdatabase_Keerthi_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "carsalesserver10.database.windows.net"
-		},
-		"SQLdatabase_Keerthi_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "carsales"
-		},
-		"SQLdatabase_Keerthi_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "Adminambi"
 		},
 		"containerUri": {
 			"type": "string",
@@ -91,14 +91,11 @@
 					"AzureDataLakeStorage_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage_properties_typeProperties_url')]"
 					},
-					"Nyc_API_properties_typeProperties_url": {
-						"value": "[parameters('Nyc_API_properties_typeProperties_url')]"
-					},
-					"linkedservicegit_properties_typeProperties_url": {
-						"value": "[parameters('linkedservicegit_properties_typeProperties_url')]"
-					},
 					"LS_GIT_CARSALES_properties_typeProperties_url": {
 						"value": "[parameters('LS_GIT_CARSALES_properties_typeProperties_url')]"
+					},
+					"Nyc_API_properties_typeProperties_url": {
+						"value": "[parameters('Nyc_API_properties_typeProperties_url')]"
 					},
 					"SQLdatabase_Keerthi_properties_typeProperties_server": {
 						"value": "[parameters('SQLdatabase_Keerthi_properties_typeProperties_server')]"
@@ -108,6 +105,9 @@
 					},
 					"SQLdatabase_Keerthi_properties_typeProperties_userName": {
 						"value": "[parameters('SQLdatabase_Keerthi_properties_typeProperties_userName')]"
+					},
+					"linkedservicegit_properties_typeProperties_url": {
+						"value": "[parameters('linkedservicegit_properties_typeProperties_url')]"
 					}
 				}
 			},
