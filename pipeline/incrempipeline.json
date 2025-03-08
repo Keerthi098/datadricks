@@ -33,6 +33,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select * from W",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -42,7 +43,8 @@
 						"parameters": {
 							"table_name": "WATER_TABLE"
 						}
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
