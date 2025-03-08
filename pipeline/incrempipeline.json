@@ -64,7 +64,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select max(Date_ID)",
+						"sqlReaderQuery": "select max(Date_ID) from ",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
