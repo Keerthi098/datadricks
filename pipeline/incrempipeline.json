@@ -27,7 +27,10 @@
 				"inputs": [
 					{
 						"referenceName": "ds_azuresqldb_carsales",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": "source_salesdata"
+						}
 					}
 				]
 			},
