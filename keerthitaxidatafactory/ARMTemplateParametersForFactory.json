@@ -8,11 +8,17 @@
 		"AzureDataLakeStorage_accountKey": {
 			"value": ""
 		},
+		"AzureDataLakeStorage_carsales_accountKey": {
+			"value": ""
+		},
 		"SQLdatabase_Keerthi_password": {
 			"value": ""
 		},
 		"AzureDataLakeStorage_properties_typeProperties_url": {
 			"value": "https://anvitaxidatalake.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage_carsales_properties_typeProperties_url": {
+			"value": "https://anvi1cardatalake.dfs.core.windows.net/"
 		},
 		"LS_GIT_CARSALES_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com/"
