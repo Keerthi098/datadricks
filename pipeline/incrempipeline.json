@@ -31,7 +31,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select * from dbo.source where Date_ID >'@{activity('last_load').output.value[0].last_load}' and Date_ID <='@{activity('current_load').output.value[0].maxdate}'\n",
+							"value": "select * from dbo.source_salesdata where Date_ID >'@{activity('last_load').output.value[0].last_load}' and Date_ID <='@{activity('current_load').output.value[0].maxdate}'\n",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
