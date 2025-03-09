@@ -32,7 +32,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select * from db",
+						"sqlReaderQuery": {
+							"value": "select * from dbo.source where Date_ID <@{activity('last_load').output} and Date_ID >=@{activity('current_load').output}",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
