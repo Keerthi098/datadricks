@@ -150,7 +150,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[UpdateWatertable]",
+					"storedProcedureName": "[dbo].[UpdateWaterMarkableTable]",
 					"storedProcedureParameters": {
 						"Last_load": {
 							"value": {
