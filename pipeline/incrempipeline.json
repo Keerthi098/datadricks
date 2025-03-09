@@ -5,8 +5,6 @@
 			{
 				"name": "CopyIncremData",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "last_load",
