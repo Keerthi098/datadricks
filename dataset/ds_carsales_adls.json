@@ -2,7 +2,7 @@
 	"name": "ds_carsales_adls",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureDataLakeStorage_carsales",
+			"referenceName": "newdatalake_cars",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
