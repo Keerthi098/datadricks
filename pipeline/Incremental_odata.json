@@ -103,7 +103,8 @@
 									"referenceName": "configjson",
 									"type": "DatasetReference",
 									"parameters": {
-										"container_name": "odata"
+										"container_name": "odata",
+										"folder_name": "config"
 									}
 								}
 							]
