@@ -94,7 +94,7 @@
 									"referenceName": "ODataResource1",
 									"type": "DatasetReference",
 									"parameters": {
-										"Table_name": "item().Table_name"
+										"Table_name": "@item().Table_name"
 									}
 								}
 							],
