@@ -14,11 +14,14 @@
 		"SQLdatabase_Keerthi_password": {
 			"value": ""
 		},
+		"newdatalake_cars_accountKey": {
+			"value": ""
+		},
 		"AzureDataLakeStorage_properties_typeProperties_url": {
 			"value": "https://anvitaxidatalake.dfs.core.windows.net/"
 		},
 		"AzureDataLakeStorage_carsales_properties_typeProperties_url": {
-			"value": "https://anvi1cardatalake.dfs.core.windows.net/"
+			"value": "https://newmetastoragekeerthi.dfs.core.windows.net/"
 		},
 		"LS_GIT_CARSALES_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com/"
@@ -38,6 +41,9 @@
 		"linkedservicegit_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com"
 		},
+		"newdatalake_cars_properties_typeProperties_url": {
+			"value": "https://newmetastoragekeerthi.dfs.core.windows.net/"
+		},
 		"Storageeventtrigger_properties_typeProperties_scope": {
 			"value": "/subscriptions/fac761bc-591f-4960-a223-235bf8f2fced/resourceGroups/keerthinyctaxi/providers/Microsoft.Storage/storageAccounts/anvitaxidatalake"
 		},
@@ -46,6 +52,9 @@
 		},
 		"triggermainpipleline_properties_typeProperties_scope": {
 			"value": "/subscriptions/fac761bc-591f-4960-a223-235bf8f2fced/resourceGroups/keerthinyctaxi/providers/Microsoft.Storage/storageAccounts/anvitaxidatalake"
+		},
+		"OData1_properties_typeProperties_url": {
+			"value": "https://services.odata.org/V4/Northwind/Northwind.svc/"
 		},
 		"containerUri": {
 			"value": ""

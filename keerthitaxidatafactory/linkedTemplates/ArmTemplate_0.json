@@ -19,13 +19,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SQLdatabase_Keerthi'"
 		},
+		"newdatalake_cars_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'newdatalake_cars'"
+		},
 		"AzureDataLakeStorage_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://anvitaxidatalake.dfs.core.windows.net/"
 		},
 		"AzureDataLakeStorage_carsales_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://anvi1cardatalake.dfs.core.windows.net/"
+			"defaultValue": "https://newmetastoragekeerthi.dfs.core.windows.net/"
 		},
 		"LS_GIT_CARSALES_properties_typeProperties_url": {
 			"type": "string",
@@ -50,6 +54,14 @@
 		"linkedservicegit_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com"
+		},
+		"newdatalake_cars_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://newmetastoragekeerthi.dfs.core.windows.net/"
+		},
+		"OData1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://services.odata.org/V4/Northwind/Northwind.svc/"
 		}
 	},
 	"variables": {
@@ -152,6 +164,37 @@
 				"typeProperties": {
 					"url": "[parameters('linkedservicegit_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/newdatalake_cars')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('newdatalake_cars_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('newdatalake_cars_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/OData1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "OData",
+				"typeProperties": {
+					"url": "[parameters('OData1_properties_typeProperties_url')]",
 					"authenticationType": "Anonymous"
 				}
 			},
@@ -568,7 +611,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage_carsales",
+					"referenceName": "newdatalake_cars",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -584,7 +627,7 @@
 				"schema": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_carsales')]"
+				"[concat(variables('factoryId'), '/linkedServices/newdatalake_cars')]"
 			]
 		},
 		{
@@ -686,69 +729,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/metasource')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "csvfiles",
-						"fileSystem": "gitoutput"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/source_git_carsales')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_GIT_CARSALES",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"load_flag": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "HttpServerLocation",
-						"relativeUrl": {
-							"value": "anshlambagit/Azure-DE-Project-Resources/refs/heads/main/Raw%20Data/@{dataset().load_flag}",
-							"type": "Expression"
-						}
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_GIT_CARSALES')]"
 			]
 		}
 	]
