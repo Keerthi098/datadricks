@@ -73,7 +73,7 @@
 								"source": {
 									"type": "ODataSource",
 									"query": {
-										"value": "@concat('$filter',item().LastProcessValueColumn,'ge',item().LastProcessValue)",
+										"value": "@concat('filter',item().LastProcessValueColumn,'ge',item().LastProcessValue)",
 										"type": "Expression"
 									},
 									"httpRequestTimeout": "00:05:00"
