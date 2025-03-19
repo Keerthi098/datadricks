@@ -132,6 +132,14 @@
 								"secureInput": false
 							},
 							"userProperties": [],
+							"typeProperties": {
+								"baseParameters": {
+									"Table_Name": {
+										"value": "@item().Table_Name",
+										"type": "Expression"
+									}
+								}
+							},
 							"linkedServiceName": {
 								"referenceName": "Odata_databricks",
 								"type": "LinkedServiceReference"
