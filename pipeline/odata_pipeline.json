@@ -79,7 +79,13 @@
 							"inputs": [
 								{
 									"referenceName": "ODataResource1",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"Table_name": {
+											"value": "@item().Table_Name",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
