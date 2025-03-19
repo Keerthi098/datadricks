@@ -103,7 +103,11 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"container_name": "odata",
-										"folder_name": "full_load"
+										"folder_name": "full_load",
+										"filename": {
+											"value": "@concat(formatDateTime(utcNow(),'dd/mm/yyyy'),'/',item().Table_name)\n",
+											"type": "Expression"
+										}
 									}
 								}
 							]
