@@ -74,6 +74,15 @@
 									"type": "ODataSource",
 									"httpRequestTimeout": "00:05:00"
 								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
 								"enableStaging": false
 							},
 							"inputs": [
@@ -85,6 +94,16 @@
 											"value": "@item().Table_Name",
 											"type": "Expression"
 										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "configjson",
+									"type": "DatasetReference",
+									"parameters": {
+										"container_name": "odata",
+										"folder_name": "full_load"
 									}
 								}
 							]
