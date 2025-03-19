@@ -105,7 +105,7 @@
 										"container_name": "odata",
 										"folder_name": "full_load",
 										"filename": {
-											"value": "@concat(formatDateTime(utcNow(),'yyyy/mm/dd'),'/',item().Table_name)\n",
+											"value": "@concat(formatDateTime(utcNow(),'yyyy-MM-dd'),'-',item().Table_name)\n",
 											"type": "Expression"
 										}
 									}
