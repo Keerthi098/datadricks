@@ -9,7 +9,7 @@
 			"container_name": {
 				"type": "string"
 			},
-			"storageaccount": {
+			"folder_name": {
 				"type": "string"
 			},
 			"filename": {
