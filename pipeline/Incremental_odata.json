@@ -72,6 +72,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "ODataSource",
+									"query": {
+										"value": "@concat('$filter',item().LastProcessValue,'ge',item().LastProcessValueColumn)",
+										"type": "Expression"
+									},
 									"httpRequestTimeout": "00:05:00"
 								},
 								"enableStaging": false
@@ -79,7 +83,10 @@
 							"inputs": [
 								{
 									"referenceName": "ODataResource1",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"Table_name": "item().Table_name"
+									}
 								}
 							]
 						}
