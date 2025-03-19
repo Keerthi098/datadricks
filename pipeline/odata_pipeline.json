@@ -28,7 +28,10 @@
 					},
 					"dataset": {
 						"referenceName": "configjson",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"container_name": "odata"
+						}
 					},
 					"firstRowOnly": false
 				}

@@ -26,11 +26,11 @@
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@dataset().container_name",
+					"value": "@dataset().folder_name",
 					"type": "Expression"
 				},
 				"fileSystem": {
-					"value": "@dataset().storageaccount",
+					"value": "@dataset().container_name",
 					"type": "Expression"
 				}
 			}
