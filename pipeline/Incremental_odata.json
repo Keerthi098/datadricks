@@ -101,7 +101,10 @@
 							"outputs": [
 								{
 									"referenceName": "configjson",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"container_name": "odata"
+									}
 								}
 							]
 						}
