@@ -9,7 +9,7 @@
 			"container_name": {
 				"type": "string"
 			},
-			"storaheaccount": {
+			"storageaccount": {
 				"type": "string"
 			},
 			"filename": {
@@ -20,7 +20,19 @@
 		"type": "Json",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation"
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().container_name",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().storageaccount",
+					"type": "Expression"
+				}
 			}
 		},
 		"schema": {}
