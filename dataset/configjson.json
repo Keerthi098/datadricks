@@ -2,7 +2,7 @@
 	"name": "configjson",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureDataLakeStorage",
+			"referenceName": "AzureDataLakeStorage_carsales",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
