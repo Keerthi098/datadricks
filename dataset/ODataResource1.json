@@ -6,12 +6,18 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"Table_na": {
+			"Table_name": {
 				"type": "string"
 			}
 		},
 		"annotations": [],
 		"type": "ODataResource",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"path": {
+				"value": "@dataset().Table_name",
+				"type": "Expression"
+			}
+		}
 	}
 }
