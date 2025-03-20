@@ -196,7 +196,10 @@
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "store_max_value",
-								"value": ""
+								"value": {
+									"value": "@string(json(variables('store')).max_value)",
+									"type": "Expression"
+								}
 							}
 						}
 					]
