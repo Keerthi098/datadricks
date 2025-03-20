@@ -169,12 +169,21 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": []
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "store",
+								"value": ""
+							}
 						}
 					]
 				}
 			}
 		],
+		"variables": {
+			"store": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
