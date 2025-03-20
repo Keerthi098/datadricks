@@ -23,6 +23,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'newdatalake_cars'"
 		},
+		"odata_databricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'odata_databricks'"
+		},
 		"AzureDataLakeStorage_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://anvitaxidatalake.dfs.core.windows.net/"
@@ -38,6 +42,10 @@
 		"Nyc_API_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://d37ci6vzurychx.cloudfront.net/"
+		},
+		"OData1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://services.odata.org/V4/Northwind/Northwind.svc/"
 		},
 		"SQLdatabase_Keerthi_properties_typeProperties_server": {
 			"type": "string",
@@ -71,9 +79,9 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/fac761bc-591f-4960-a223-235bf8f2fced/resourceGroups/keerthinyctaxi/providers/Microsoft.Storage/storageAccounts/anvitaxidatalake"
 		},
-		"OData1_properties_typeProperties_url": {
+		"odata_databricks_properties_typeProperties_existingClusterId": {
 			"type": "string",
-			"defaultValue": "https://services.odata.org/V4/Northwind/Northwind.svc/"
+			"defaultValue": "0312-014713-52b0ds2l"
 		},
 		"containerUri": {
 			"type": "string",
@@ -114,6 +122,9 @@
 					"newdatalake_cars_accountKey": {
 						"value": "[parameters('newdatalake_cars_accountKey')]"
 					},
+					"odata_databricks_accessToken": {
+						"value": "[parameters('odata_databricks_accessToken')]"
+					},
 					"AzureDataLakeStorage_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage_properties_typeProperties_url')]"
 					},
@@ -125,6 +136,9 @@
 					},
 					"Nyc_API_properties_typeProperties_url": {
 						"value": "[parameters('Nyc_API_properties_typeProperties_url')]"
+					},
+					"OData1_properties_typeProperties_url": {
+						"value": "[parameters('OData1_properties_typeProperties_url')]"
 					},
 					"SQLdatabase_Keerthi_properties_typeProperties_server": {
 						"value": "[parameters('SQLdatabase_Keerthi_properties_typeProperties_server')]"
@@ -141,8 +155,8 @@
 					"newdatalake_cars_properties_typeProperties_url": {
 						"value": "[parameters('newdatalake_cars_properties_typeProperties_url')]"
 					},
-					"OData1_properties_typeProperties_url": {
-						"value": "[parameters('OData1_properties_typeProperties_url')]"
+					"odata_databricks_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('odata_databricks_properties_typeProperties_existingClusterId')]"
 					}
 				}
 			},

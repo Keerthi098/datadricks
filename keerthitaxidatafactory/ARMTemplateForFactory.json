@@ -23,6 +23,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'newdatalake_cars'"
 		},
+		"odata_databricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'odata_databricks'"
+		},
 		"AzureDataLakeStorage_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://anvitaxidatalake.dfs.core.windows.net/"
@@ -38,6 +42,10 @@
 		"Nyc_API_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://d37ci6vzurychx.cloudfront.net/"
+		},
+		"OData1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://services.odata.org/V4/Northwind/Northwind.svc/"
 		},
 		"SQLdatabase_Keerthi_properties_typeProperties_server": {
 			"type": "string",
@@ -71,9 +79,9 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/fac761bc-591f-4960-a223-235bf8f2fced/resourceGroups/keerthinyctaxi/providers/Microsoft.Storage/storageAccounts/anvitaxidatalake"
 		},
-		"OData1_properties_typeProperties_url": {
+		"odata_databricks_properties_typeProperties_existingClusterId": {
 			"type": "string",
-			"defaultValue": "https://services.odata.org/V4/Northwind/Northwind.svc/"
+			"defaultValue": "0312-014713-52b0ds2l"
 		}
 	},
 	"variables": {
@@ -653,6 +661,144 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/odata_pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Lookup1",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "configjson",
+								"type": "DatasetReference",
+								"parameters": {
+									"container_name": "odata",
+									"folder_name": "config",
+									"filename": "config.json"
+								}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "ForEach1",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Lookup1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Lookup1').output.value",
+								"type": "Expression"
+							},
+							"isSequential": true,
+							"activities": [
+								{
+									"name": "Copy data1",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "ODataSource",
+											"httpRequestTimeout": "00:05:00"
+										},
+										"sink": {
+											"type": "JsonSink",
+											"storeSettings": {
+												"type": "AzureBlobFSWriteSettings"
+											},
+											"formatSettings": {
+												"type": "JsonWriteSettings"
+											}
+										},
+										"enableStaging": false
+									},
+									"inputs": [
+										{
+											"referenceName": "ODataResource1",
+											"type": "DatasetReference",
+											"parameters": {
+												"Table_name": {
+													"value": "@item().Table_Name",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "configjson",
+											"type": "DatasetReference",
+											"parameters": {
+												"container_name": "odata",
+												"folder_name": "full_load",
+												"filename": {
+													"value": "@concat(formatDateTime(utcNow(),'yyyy/MM/dd'),'/',item().Table_name)\n",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"variables": {
+					"store": {
+						"type": "String"
+					},
+					"store_max_value": {
+						"type": "String"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/configjson')]",
+				"[concat(variables('factoryId'), '/datasets/ODataResource1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/pipelinegit')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -950,6 +1096,34 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ODataResource1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "OData1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"Table_name": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "ODataResource",
+				"schema": [],
+				"typeProperties": {
+					"path": {
+						"value": "@dataset().Table_name",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/OData1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Parquet_sink')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1142,6 +1316,51 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/Nyc_API')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/configjson')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage_carsales",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"container_name": {
+						"type": "string"
+					},
+					"folder_name": {
+						"type": "string"
+					},
+					"filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().filename",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().folder_name",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().container_name",
+							"type": "Expression"
+						}
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_carsales')]"
 			]
 		},
 		{
@@ -1666,6 +1885,20 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/OData1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "OData",
+				"typeProperties": {
+					"url": "[parameters('OData1_properties_typeProperties_url')]",
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SQLdatabase_Keerthi')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -1914,7 +2147,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/odata_pipeline')]",
+			"name": "[concat(parameters('factoryName'), '/Incremental_odata')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1949,7 +2182,7 @@
 								"parameters": {
 									"container_name": "odata",
 									"folder_name": "config",
-									"filename": "config.json"
+									"filename": "incremental_load.odata.txt"
 								}
 							},
 							"firstRowOnly": false
@@ -1989,6 +2222,10 @@
 									"typeProperties": {
 										"source": {
 											"type": "ODataSource",
+											"query": {
+												"value": "@concat('filter',item().LastProcessValueColumn,'ge',item().LastProcessValue)",
+												"type": "Expression"
+											},
 											"httpRequestTimeout": "00:05:00"
 										},
 										"sink": {
@@ -2007,10 +2244,7 @@
 											"referenceName": "ODataResource1",
 											"type": "DatasetReference",
 											"parameters": {
-												"Table_name": {
-													"value": "@item().Table_Name",
-													"type": "Expression"
-												}
+												"Table_name": "@item().Table_name"
 											}
 										}
 									],
@@ -2020,11 +2254,195 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"container_name": "odata",
-												"folder_name": "full_load",
+												"folder_name": "Incremental_load",
 												"filename": {
-													"value": "@concat(formatDateTime(utcNow(),'yyyy/MM/dd'),'/',item().Table_name)\n",
+													"value": "@concat(formatDateTime(utcNow(),'yyyy/MM/dd'),'/',item().Table_Name)",
 													"type": "Expression"
 												}
+											}
+										}
+									]
+								},
+								{
+									"name": "Notebook1",
+									"type": "DatabricksNotebook",
+									"dependsOn": [
+										{
+											"activity": "Copy data1",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"notebookPath": "/Users/venkimelbourne_yahoo.com.au#ext#@venkimelbourneyahoocom.onmicrosoft.com/Odata_notebook",
+										"baseParameters": {
+											"Table_Name": {
+												"value": "@item().Table_Name",
+												"type": "Expression"
+											},
+											"LastProcessValueColumn": {
+												"value": "@item().LastProcessValueColumn",
+												"type": "Expression"
+											},
+											"Load_Date": {
+												"value": "@formatDateTime(utcNow(),'yyyy/MM/dd')",
+												"type": "Expression"
+											}
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "odata_databricks",
+										"type": "LinkedServiceReference"
+									}
+								},
+								{
+									"name": "Set variable1",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Notebook1",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "store",
+										"value": {
+											"value": "@string(activity('Notebook1').output.runOutput)",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "Set variable2",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Set variable1",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "store_max_value",
+										"value": {
+											"value": "@string(json(variables('store')).max_value)",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "Copy data2",
+									"type": "Copy",
+									"dependsOn": [
+										{
+											"activity": "Set variable2",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "JsonSource",
+											"additionalColumns": [
+												{
+													"name": "ID",
+													"value": {
+														"value": "@item().ID",
+														"type": "Expression"
+													}
+												},
+												{
+													"name": "Table_Name",
+													"value": {
+														"value": "@item().Table_Name",
+														"type": "Expression"
+													}
+												},
+												{
+													"name": "LastProcessValue",
+													"value": {
+														"value": "@variables('store_max_value')",
+														"type": "Expression"
+													}
+												},
+												{
+													"name": "LastProcessValueColumn",
+													"value": {
+														"value": "@item().LastProcessValueColumn",
+														"type": "Expression"
+													}
+												}
+											],
+											"storeSettings": {
+												"type": "AzureBlobFSReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "JsonReadSettings"
+											}
+										},
+										"sink": {
+											"type": "JsonSink",
+											"storeSettings": {
+												"type": "AzureBlobFSWriteSettings"
+											},
+											"formatSettings": {
+												"type": "JsonWriteSettings"
+											}
+										},
+										"enableStaging": false
+									},
+									"inputs": [
+										{
+											"referenceName": "configjson",
+											"type": "DatasetReference",
+											"parameters": {
+												"container_name": "odata",
+												"folder_name": "config",
+												"filename": "dummy.json"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "configjson",
+											"type": "DatasetReference",
+											"parameters": {
+												"container_name": "odata",
+												"folder_name": "config",
+												"filename": "incremental_load.json"
 											}
 										}
 									]
@@ -2036,99 +2454,39 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"variables": {
+					"store": {
+						"type": "String"
+					},
+					"store_max_value": {
+						"type": "String"
+					}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/configjson')]",
-				"[concat(variables('factoryId'), '/datasets/ODataResource1')]"
+				"[concat(variables('factoryId'), '/datasets/ODataResource1')]",
+				"[concat(variables('factoryId'), '/linkedServices/odata_databricks')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/configjson')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage_carsales",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"container_name": {
-						"type": "string"
-					},
-					"folder_name": {
-						"type": "string"
-					},
-					"filename": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": {
-							"value": "@dataset().filename",
-							"type": "Expression"
-						},
-						"folderPath": {
-							"value": "@dataset().folder_name",
-							"type": "Expression"
-						},
-						"fileSystem": {
-							"value": "@dataset().container_name",
-							"type": "Expression"
-						}
-					}
-				},
-				"schema": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_carsales')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/OData1')]",
+			"name": "[concat(parameters('factoryName'), '/odata_databricks')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"type": "OData",
+				"type": "AzureDatabricks",
 				"typeProperties": {
-					"url": "[parameters('OData1_properties_typeProperties_url')]",
-					"authenticationType": "Anonymous"
+					"domain": "https://adb-487162567815217.17.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('odata_databricks_accessToken')]"
+					},
+					"existingClusterId": "[parameters('odata_databricks_properties_typeProperties_existingClusterId')]"
 				}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ODataResource1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "OData1",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"Table_name": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "ODataResource",
-				"schema": [],
-				"typeProperties": {
-					"path": {
-						"value": "@dataset().Table_name",
-						"type": "Expression"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/OData1')]"
-			]
 		}
 	]
 }

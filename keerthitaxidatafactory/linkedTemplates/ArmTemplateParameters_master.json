@@ -17,6 +17,9 @@
 		"newdatalake_cars_accountKey": {
 			"value": ""
 		},
+		"odata_databricks_accessToken": {
+			"value": ""
+		},
 		"AzureDataLakeStorage_properties_typeProperties_url": {
 			"value": "https://anvitaxidatalake.dfs.core.windows.net/"
 		},
@@ -28,6 +31,9 @@
 		},
 		"Nyc_API_properties_typeProperties_url": {
 			"value": "https://d37ci6vzurychx.cloudfront.net/"
+		},
+		"OData1_properties_typeProperties_url": {
+			"value": "https://services.odata.org/V4/Northwind/Northwind.svc/"
 		},
 		"SQLdatabase_Keerthi_properties_typeProperties_server": {
 			"value": "carsalesserver10.database.windows.net"
@@ -53,8 +59,8 @@
 		"triggermainpipleline_properties_typeProperties_scope": {
 			"value": "/subscriptions/fac761bc-591f-4960-a223-235bf8f2fced/resourceGroups/keerthinyctaxi/providers/Microsoft.Storage/storageAccounts/anvitaxidatalake"
 		},
-		"OData1_properties_typeProperties_url": {
-			"value": "https://services.odata.org/V4/Northwind/Northwind.svc/"
+		"odata_databricks_properties_typeProperties_existingClusterId": {
+			"value": "0312-014713-52b0ds2l"
 		},
 		"containerUri": {
 			"value": ""
