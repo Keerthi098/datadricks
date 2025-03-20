@@ -137,6 +137,10 @@
 									"Table_Name": {
 										"value": "@item().Table_Name",
 										"type": "Expression"
+									},
+									"LastProcessValueColumn": {
+										"value": "@item().LastProcessValueColumn",
+										"type": "Expression"
 									}
 								}
 							},
