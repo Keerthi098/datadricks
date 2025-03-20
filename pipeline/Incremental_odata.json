@@ -234,7 +234,10 @@
 										},
 										{
 											"name": "Table_Name",
-											"value": ""
+											"value": {
+												"value": "@item().Table_Name",
+												"type": "Expression"
+											}
 										},
 										{
 											"name": "LastProcessValue",
