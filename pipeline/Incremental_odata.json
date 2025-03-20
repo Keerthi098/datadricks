@@ -238,6 +238,7 @@
 											"value": "$$FILEPATH"
 										},
 										{
+											"name": "LastProcessValueColumn",
 											"value": "$$FILEPATH"
 										}
 									],
