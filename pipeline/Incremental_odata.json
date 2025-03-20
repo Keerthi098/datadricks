@@ -226,6 +226,18 @@
 									"type": "JsonSource",
 									"additionalColumns": [
 										{
+											"name": "ID",
+											"value": "$$FILEPATH"
+										},
+										{
+											"name": "Table_Name",
+											"value": "$$FILEPATH"
+										},
+										{
+											"name": "LastProcessValue",
+											"value": "$$FILEPATH"
+										},
+										{
 											"value": "$$FILEPATH"
 										}
 									],
