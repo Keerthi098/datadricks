@@ -173,7 +173,7 @@
 							"typeProperties": {
 								"variableName": "store",
 								"value": {
-									"value": "@activity('Notebook1').output.runOutput",
+									"value": "@string(activity('Notebook1').output.runOutput)",
 									"type": "Expression"
 								}
 							}
