@@ -131,27 +131,7 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": [],
-							"typeProperties": {
-								"baseParameters": {
-									"Table_Name": {
-										"value": "@item().Table_Name",
-										"type": "Expression"
-									},
-									"LastProcessValueColumn": {
-										"value": "@item().LastProcessValueColumn",
-										"type": "Expression"
-									},
-									"Load_Date": {
-										"value": "@formatDateTime(utcNow(),'yyyy/MM/dd')",
-										"type": "Expression"
-									}
-								}
-							},
-							"linkedServiceName": {
-								"referenceName": "Odata_databricks",
-								"type": "LinkedServiceReference"
-							}
+							"userProperties": []
 						}
 					]
 				}
