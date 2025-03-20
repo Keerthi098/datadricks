@@ -227,11 +227,14 @@
 									"additionalColumns": [
 										{
 											"name": "ID",
-											"value": ""
+											"value": {
+												"value": "@item().ID",
+												"type": "Expression"
+											}
 										},
 										{
 											"name": "Table_Name",
-											"value": "$$FILEPATH"
+											"value": ""
 										},
 										{
 											"name": "LastProcessValue",
