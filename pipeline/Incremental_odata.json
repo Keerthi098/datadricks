@@ -241,11 +241,17 @@
 										},
 										{
 											"name": "LastProcessValue",
-											"value": "$$FILEPATH"
+											"value": {
+												"value": "@variables('store_max_value')",
+												"type": "Expression"
+											}
 										},
 										{
 											"name": "LastProcessValueColumn",
-											"value": "$$FILEPATH"
+											"value": {
+												"value": "@item().LastProcessValueColumn",
+												"type": "Expression"
+											}
 										}
 									],
 									"storeSettings": {
