@@ -131,7 +131,11 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": []
+							"userProperties": [],
+							"linkedServiceName": {
+								"referenceName": "odata_databricks",
+								"type": "LinkedServiceReference"
+							}
 						}
 					]
 				}
