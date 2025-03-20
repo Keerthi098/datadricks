@@ -224,10 +224,27 @@
 							"typeProperties": {
 								"source": {
 									"type": "JsonSource",
-									"additionalColumns": {
-										"type": "Expression",
-										"value": "@item().Table_Name"
-									},
+									"additionalColumns": [
+										{
+											"name": "ID",
+											"value": {
+												"value": "@item().ID",
+												"type": "Expression"
+											}
+										},
+										{
+											"name": "Table_Name",
+											"value": ""
+										},
+										{
+											"name": "LastProcessValue",
+											"value": "$$FILEPATH"
+										},
+										{
+											"name": "LastProcessValueColumn",
+											"value": "$$FILEPATH"
+										}
+									],
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
