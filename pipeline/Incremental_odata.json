@@ -234,7 +234,7 @@
 										},
 										{
 											"name": "Table_Name",
-											"value": ""
+											"value": "$$FILEPATH"
 										},
 										{
 											"name": "LastProcessValue",
