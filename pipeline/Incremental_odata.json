@@ -227,7 +227,7 @@
 									"additionalColumns": [
 										{
 											"name": "ID",
-											"value": "$$FILEPATH"
+											"value": ""
 										},
 										{
 											"name": "Table_Name",
