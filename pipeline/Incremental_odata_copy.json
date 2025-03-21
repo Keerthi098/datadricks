@@ -133,7 +133,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"notebookPath": "/Users/venkimelbourne_yahoo.com.au#ext#@venkimelbourneyahoocom.onmicrosoft.com/Odata_notebook",
+								"notebookPath": "/Users/venkimelbourne_yahoo.com.au#ext#@venkimelbourneyahoocom.onmicrosoft.com/Odata_notebook_copy",
 								"baseParameters": {
 									"Table_Name": {
 										"value": "@item().Table_Name",
