@@ -147,7 +147,10 @@
 										"value": "@formatDateTime(utcNow(),'yyyy/MM/dd')",
 										"type": "Expression"
 									},
-									"ID": "@i"
+									"ID": {
+										"value": "@item().ID",
+										"type": "Expression"
+									}
 								}
 							},
 							"linkedServiceName": {
