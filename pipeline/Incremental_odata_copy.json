@@ -146,10 +146,6 @@
 									"Load_Date": {
 										"value": "@formatDateTime(utcNow(),'yyyy/MM/dd')",
 										"type": "Expression"
-									},
-									"ID": {
-										"value": "@item().ID",
-										"type": "Expression"
 									}
 								}
 							},
