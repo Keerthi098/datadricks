@@ -32,7 +32,7 @@
 						"parameters": {
 							"container_name": "odata",
 							"folder_name": "config",
-							"filename": "incremental_load.odata.txt"
+							"filename": "incremental_load.json"
 						}
 					},
 					"firstRowOnly": false
