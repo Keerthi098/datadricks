@@ -67,6 +67,10 @@
 			"type": "string",
 			"defaultValue": "https://newmetastoragekeerthi.dfs.core.windows.net/"
 		},
+		"odata_databricks_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0312-014713-52b0ds2l"
+		},
 		"Storageeventtrigger_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/fac761bc-591f-4960-a223-235bf8f2fced/resourceGroups/keerthinyctaxi/providers/Microsoft.Storage/storageAccounts/anvitaxidatalake"
@@ -78,10 +82,6 @@
 		"triggermainpipleline_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/fac761bc-591f-4960-a223-235bf8f2fced/resourceGroups/keerthinyctaxi/providers/Microsoft.Storage/storageAccounts/anvitaxidatalake"
-		},
-		"odata_databricks_properties_typeProperties_existingClusterId": {
-			"type": "string",
-			"defaultValue": "0312-014713-52b0ds2l"
 		},
 		"containerUri": {
 			"type": "string",
@@ -181,6 +181,26 @@
 					},
 					"triggercopy_properties_typeProperties_scope": {
 						"value": "[parameters('triggercopy_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'keerthitaxidatafactory_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "keerthitaxidatafactory_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
 					},
 					"triggermainpipleline_properties_typeProperties_scope": {
 						"value": "[parameters('triggermainpipleline_properties_typeProperties_scope')]"
@@ -188,7 +208,7 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'keerthitaxidatafactory_ArmTemplate_0')]"
+				"[resourceId('Microsoft.Resources/deployments', 'keerthitaxidatafactory_ArmTemplate_1')]"
 			]
 		}
 	]

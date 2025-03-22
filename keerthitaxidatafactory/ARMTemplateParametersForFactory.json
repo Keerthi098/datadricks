@@ -50,6 +50,9 @@
 		"newdatalake_cars_properties_typeProperties_url": {
 			"value": "https://newmetastoragekeerthi.dfs.core.windows.net/"
 		},
+		"odata_databricks_properties_typeProperties_existingClusterId": {
+			"value": "0312-014713-52b0ds2l"
+		},
 		"Storageeventtrigger_properties_typeProperties_scope": {
 			"value": "/subscriptions/fac761bc-591f-4960-a223-235bf8f2fced/resourceGroups/keerthinyctaxi/providers/Microsoft.Storage/storageAccounts/anvitaxidatalake"
 		},
@@ -58,9 +61,6 @@
 		},
 		"triggermainpipleline_properties_typeProperties_scope": {
 			"value": "/subscriptions/fac761bc-591f-4960-a223-235bf8f2fced/resourceGroups/keerthinyctaxi/providers/Microsoft.Storage/storageAccounts/anvitaxidatalake"
-		},
-		"odata_databricks_properties_typeProperties_existingClusterId": {
-			"value": "0312-014713-52b0ds2l"
 		}
 	}
 }
