@@ -31,7 +31,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container_name": "odata",
-							"folder_name": "incremental_load",
+							"folder_name": "Incremental_load",
 							"filename": "incremental_load.json"
 						}
 					},
