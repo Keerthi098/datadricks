@@ -63,15 +63,24 @@
 							"type": "DateTime"
 						},
 						"pipelinename": {
-							"value": "",
+							"value": {
+								"value": "@pipeline().Pipeline",
+								"type": "Expression"
+							},
 							"type": "String"
 						},
 						"runerror": {
-							"value": "",
+							"value": {
+								"value": "@activity('Notebook1').output.value.runerror",
+								"type": "Expression"
+							},
 							"type": "String"
 						},
 						"runid": {
-							"value": "",
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							},
 							"type": "String"
 						},
 						"runoutput": {
