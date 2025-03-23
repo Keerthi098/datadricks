@@ -163,14 +163,14 @@
 							"type": "String"
 						},
 						"runoutput": {
-							"value": {
-								"value": "@activity('Notebook1').output.runOutput",
-								"type": "Expression"
-							},
+							"value": null,
 							"type": "String"
 						},
 						"runpageurl": {
-							"value": null,
+							"value": {
+								"value": "@activity('Notebook1').output.pipeline().runPageUrl",
+								"type": "Expression"
+							},
 							"type": "String"
 						},
 						"status": {
