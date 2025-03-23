@@ -149,11 +149,17 @@
 							"type": "String"
 						},
 						"runerror": {
-							"value": "",
+							"value": {
+								"value": "@activity('Notebook1').output.runError",
+								"type": "Expression"
+							},
 							"type": "String"
 						},
 						"runid": {
-							"value": "",
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							},
 							"type": "String"
 						},
 						"runoutput": {
