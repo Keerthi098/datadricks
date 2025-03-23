@@ -163,15 +163,18 @@
 							"type": "String"
 						},
 						"runoutput": {
-							"value": "",
+							"value": {
+								"value": "@activity('Notebook1').output.runOutput",
+								"type": "Expression"
+							},
 							"type": "String"
 						},
 						"runpageurl": {
-							"value": "",
+							"value": null,
 							"type": "String"
 						},
 						"status": {
-							"value": "",
+							"value": "Failed",
 							"type": "String"
 						}
 					}
