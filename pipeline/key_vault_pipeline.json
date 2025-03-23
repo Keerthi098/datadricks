@@ -70,7 +70,7 @@
 							"type": "String"
 						},
 						"runerror": {
-							"value": "Failed",
+							"value": null,
 							"type": "String"
 						},
 						"runid": {
