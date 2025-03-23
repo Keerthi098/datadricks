@@ -15,7 +15,11 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/venkimelbourne_yahoo.com.au#ext#@venkimelbourneyahoocom.onmicrosoft.com/test_notebook_with_mountpoint"
+					"notebookPath": "/Users/venkimelbourne_yahoo.com.au#ext#@venkimelbourneyahoocom.onmicrosoft.com/test_notebook_with_mountpoint",
+					"baseParameters": {
+						"Load_date": "2025/03/23",
+						"Table_name": "employees"
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "AzureDatabricks1",
