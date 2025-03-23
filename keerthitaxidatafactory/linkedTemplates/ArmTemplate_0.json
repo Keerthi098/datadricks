@@ -70,6 +70,10 @@
 		"odata_databricks_properties_typeProperties_existingClusterId": {
 			"type": "string",
 			"defaultValue": "0312-014713-52b0ds2l"
+		},
+		"Ls_KeyVault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://GnanviKeyVault.vault.azure.net/"
 		}
 	},
 	"variables": {
@@ -222,6 +226,19 @@
 						"value": "[parameters('odata_databricks_accessToken')]"
 					},
 					"existingClusterId": "[parameters('odata_databricks_properties_typeProperties_existingClusterId')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Ls_KeyVault')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('Ls_KeyVault_properties_typeProperties_baseUrl')]"
 				}
 			},
 			"dependsOn": []
@@ -702,31 +719,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/SQLdatabase_Keerthi')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_carsales_adls')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "newdatalake_cars",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "raw",
-						"fileSystem": "bronze"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/newdatalake_cars')]"
 			]
 		}
 	]

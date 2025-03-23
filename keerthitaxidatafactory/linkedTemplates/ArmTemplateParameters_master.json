@@ -62,6 +62,9 @@
 		"triggermainpipleline_properties_typeProperties_scope": {
 			"value": "/subscriptions/fac761bc-591f-4960-a223-235bf8f2fced/resourceGroups/keerthinyctaxi/providers/Microsoft.Storage/storageAccounts/anvitaxidatalake"
 		},
+		"Ls_KeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://GnanviKeyVault.vault.azure.net/"
+		},
 		"containerUri": {
 			"value": ""
 		},

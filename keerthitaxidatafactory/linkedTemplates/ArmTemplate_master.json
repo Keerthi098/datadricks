@@ -83,6 +83,10 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/fac761bc-591f-4960-a223-235bf8f2fced/resourceGroups/keerthinyctaxi/providers/Microsoft.Storage/storageAccounts/anvitaxidatalake"
 		},
+		"Ls_KeyVault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://GnanviKeyVault.vault.azure.net/"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -157,6 +161,9 @@
 					},
 					"odata_databricks_properties_typeProperties_existingClusterId": {
 						"value": "[parameters('odata_databricks_properties_typeProperties_existingClusterId')]"
+					},
+					"Ls_KeyVault_properties_typeProperties_baseUrl": {
+						"value": "[parameters('Ls_KeyVault_properties_typeProperties_baseUrl')]"
 					}
 				}
 			},
@@ -178,9 +185,6 @@
 					},
 					"Storageeventtrigger_properties_typeProperties_scope": {
 						"value": "[parameters('Storageeventtrigger_properties_typeProperties_scope')]"
-					},
-					"triggercopy_properties_typeProperties_scope": {
-						"value": "[parameters('triggercopy_properties_typeProperties_scope')]"
 					}
 				}
 			},
@@ -201,6 +205,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"triggercopy_properties_typeProperties_scope": {
+						"value": "[parameters('triggercopy_properties_typeProperties_scope')]"
 					},
 					"triggermainpipleline_properties_typeProperties_scope": {
 						"value": "[parameters('triggermainpipleline_properties_typeProperties_scope')]"
