@@ -56,7 +56,10 @@
 							"type": "String"
 						},
 						"load_date": {
-							"value": "",
+							"value": {
+								"value": "@convertFromUtc(utcNow(),'Australia Standard time')",
+								"type": "Expression"
+							},
 							"type": "DateTime"
 						},
 						"pipelinename": {
