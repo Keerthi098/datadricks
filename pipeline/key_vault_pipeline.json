@@ -82,14 +82,14 @@
 						},
 						"runoutput": {
 							"value": {
-								"value": "@activity('Notebook1').output.value.runOutput",
+								"value": "@activity('Notebook1').output.runOutput",
 								"type": "Expression"
 							},
 							"type": "String"
 						},
 						"runpageurl": {
 							"value": {
-								"value": "@activity('Notebook1').output.",
+								"value": "@activity('Notebook1').output.runPageUrl",
 								"type": "Expression"
 							},
 							"type": "String"
