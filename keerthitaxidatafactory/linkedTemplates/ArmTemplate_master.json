@@ -87,6 +87,10 @@
 			"type": "string",
 			"defaultValue": "https://GnanviKeyVault.vault.azure.net/"
 		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0312-014713-52b0ds2l"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -183,8 +187,8 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"Storageeventtrigger_properties_typeProperties_scope": {
-						"value": "[parameters('Storageeventtrigger_properties_typeProperties_scope')]"
+					"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
 					}
 				}
 			},
@@ -205,6 +209,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"Storageeventtrigger_properties_typeProperties_scope": {
+						"value": "[parameters('Storageeventtrigger_properties_typeProperties_scope')]"
 					},
 					"triggercopy_properties_typeProperties_scope": {
 						"value": "[parameters('triggercopy_properties_typeProperties_scope')]"

@@ -64,6 +64,9 @@
 		},
 		"Ls_KeyVault_properties_typeProperties_baseUrl": {
 			"value": "https://GnanviKeyVault.vault.azure.net/"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"value": "0312-014713-52b0ds2l"
 		}
 	}
 }

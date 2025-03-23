@@ -244,6 +244,18 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ODataResource1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -636,89 +648,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_azuresqldb_carsales')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "SQLdatabase_Keerthi",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"table_name": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Branch_ID",
-						"type": "varchar"
-					},
-					{
-						"name": "Dealer_ID",
-						"type": "varchar"
-					},
-					{
-						"name": "Model_ID",
-						"type": "varchar"
-					},
-					{
-						"name": "Revenue",
-						"type": "bigint",
-						"precision": 19
-					},
-					{
-						"name": "Units_Sold",
-						"type": "bigint",
-						"precision": 19
-					},
-					{
-						"name": "Date_ID",
-						"type": "varchar"
-					},
-					{
-						"name": "Day",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Month",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Year",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "BranchName",
-						"type": "varchar"
-					},
-					{
-						"name": "DealerName",
-						"type": "varchar"
-					},
-					{
-						"name": "Product_Name",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": {
-						"value": "@dataset().table_name",
-						"type": "Expression"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/SQLdatabase_Keerthi')]"
 			]
 		}
 	]
