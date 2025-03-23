@@ -104,6 +104,70 @@
 					"referenceName": "SQLdatabase_Keerthi",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "Stored procedure2",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Notebook1",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[pipeline_log_usp]",
+					"storedProcedureParameters": {
+						"datafactoryname": {
+							"value": {
+								"value": "@pipeline().DataFactory",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"load_date": {
+							"value": "",
+							"type": "DateTime"
+						},
+						"pipelinename": {
+							"value": "",
+							"type": "String"
+						},
+						"runerror": {
+							"value": "",
+							"type": "String"
+						},
+						"runid": {
+							"value": "",
+							"type": "String"
+						},
+						"runoutput": {
+							"value": "",
+							"type": "String"
+						},
+						"runpageurl": {
+							"value": "",
+							"type": "String"
+						},
+						"status": {
+							"value": "",
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "SQLdatabase_Keerthi",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
