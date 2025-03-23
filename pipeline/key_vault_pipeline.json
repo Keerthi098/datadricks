@@ -70,10 +70,7 @@
 							"type": "String"
 						},
 						"runerror": {
-							"value": {
-								"value": "@activity('Notebook1').output.value.runerror",
-								"type": "Expression"
-							},
+							"value": null,
 							"type": "String"
 						},
 						"runid": {
@@ -91,11 +88,14 @@
 							"type": "String"
 						},
 						"runpageurl": {
-							"value": "",
+							"value": {
+								"value": "@activity('Notebook1').output.",
+								"type": "Expression"
+							},
 							"type": "String"
 						},
 						"status": {
-							"value": "Successed",
+							"value": "Succeeded",
 							"type": "String"
 						}
 					}
