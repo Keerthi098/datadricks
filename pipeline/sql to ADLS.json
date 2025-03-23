@@ -25,7 +25,8 @@
 						"referenceName": "ds_azuresqldb_carsales",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "config"
+							"table_name": "config",
+							"schema_name": "db"
 						}
 					},
 					"firstRowOnly": false
