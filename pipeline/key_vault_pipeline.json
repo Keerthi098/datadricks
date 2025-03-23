@@ -57,7 +57,7 @@
 						},
 						"load_date": {
 							"value": {
-								"value": "utcNow()",
+								"value": "@convertFromUtc(utcNow(),'India Standard Time')",
 								"type": "Expression"
 							},
 							"type": "DateTime"
