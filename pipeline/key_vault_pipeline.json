@@ -84,7 +84,10 @@
 							"type": "String"
 						},
 						"runoutput": {
-							"value": "",
+							"value": {
+								"value": "@activity('Notebook1').output.value.runOutput",
+								"type": "Expression"
+							},
 							"type": "String"
 						},
 						"runpageurl": {
