@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select * from config",
+						"sqlReaderQuery": "select * from saleslt.config",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
