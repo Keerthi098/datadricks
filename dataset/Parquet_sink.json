@@ -21,8 +21,18 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "trips2023data",
-				"fileSystem": "bronze"
+				"fileName": {
+					"value": "@dataset().table_name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().sink_folder",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().sink_container",
+					"type": "Expression"
+				}
 			},
 			"compressionCodec": "snappy"
 		},
