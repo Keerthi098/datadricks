@@ -106,7 +106,17 @@
 							"outputs": [
 								{
 									"referenceName": "Parquet_sink",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"table_name": {
+											"value": "@item().source_table",
+											"type": "Expression"
+										},
+										"sink_container": {
+											"value": "@item().sink_container",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
