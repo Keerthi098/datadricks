@@ -26,7 +26,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"table_name": "config",
-							"schema_name": "db"
+							"schema_name": "dbo"
 						}
 					},
 					"firstRowOnly": false
@@ -73,7 +73,13 @@
 							"inputs": [
 								{
 									"referenceName": "ds_azuresqldb_carsales",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"table_name": {
+											"value": "@item().source_table",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
