@@ -71,8 +71,14 @@
 			}
 		],
 		"typeProperties": {
-			"schema": "dbo",
-			"table": "config"
+			"schema": {
+				"value": "@dataset().schema_name",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().table_name",
+				"type": "Expression"
+			}
 		}
 	}
 }
