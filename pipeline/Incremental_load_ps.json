@@ -92,7 +92,7 @@
 									"value": "@equals(item().lpv,activity('Lookup1').output.firstRow.maxvalue)",
 									"type": "Expression"
 								},
-								"ifTrueActivities": [
+								"ifFalseActivities": [
 									{
 										"name": "Copy data1",
 										"type": "Copy",
