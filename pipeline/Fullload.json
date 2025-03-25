@@ -173,11 +173,17 @@
 								"storedProcedureName": "[dbo].[tblconfig_usp]",
 								"storedProcedureParameters": {
 									"id": {
-										"value": "",
+										"value": {
+											"value": "@item().id",
+											"type": "Expression"
+										},
 										"type": "Int32"
 									},
 									"lpv_param": {
-										"value": "",
+										"value": {
+											"value": "@activity('Lookup1').output.firstRow.maxvalue",
+											"type": "Expression"
+										},
 										"type": "String"
 									}
 								}
