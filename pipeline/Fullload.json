@@ -45,15 +45,7 @@
 						"value": "@activity('Fulload_pipeline_lookup').output.value",
 						"type": "Expression"
 					},
-					"isSequential": true,
-					"activities": [
-						{
-							"name": "If Condition1",
-							"type": "IfCondition",
-							"dependsOn": [],
-							"userProperties": []
-						}
-					]
+					"isSequential": true
 				}
 			}
 		],
