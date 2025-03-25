@@ -20,7 +20,19 @@
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation"
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().sink_table",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().sink_folder",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().sink_container",
+					"type": "Expression"
+				}
 			},
 			"compressionCodec": "snappy"
 		},
