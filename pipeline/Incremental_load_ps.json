@@ -152,6 +152,10 @@
 													"sink_folder": {
 														"value": "@item().sinkfolder",
 														"type": "Expression"
+													},
+													"sink_table": {
+														"value": "@item().srctable",
+														"type": "Expression"
 													}
 												}
 											}
