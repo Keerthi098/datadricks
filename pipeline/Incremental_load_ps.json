@@ -108,6 +108,10 @@
 										"typeProperties": {
 											"source": {
 												"type": "AzureSqlSource",
+												"sqlReaderQuery": {
+													"value": "select * from @{item().srcschema}.@{item().srctable} where @{item().deltacol} > @{item().lpv}",
+													"type": "Expression"
+												},
 												"queryTimeout": "02:00:00",
 												"partitionOption": "None"
 											},
