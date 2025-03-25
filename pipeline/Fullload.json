@@ -170,7 +170,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "[dbo].[tblconfig_usp]",
+								"storedProcedureName": "[dbo].[pipelinelogupdate]",
 								"storedProcedureParameters": {
 									"id": {
 										"value": {
