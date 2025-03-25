@@ -146,7 +146,7 @@
 												"type": "DatasetReference",
 												"parameters": {
 													"sink_container": {
-														"value": "@item().global",
+														"value": "@item().sinkcontainer",
 														"type": "Expression"
 													},
 													"sink_folder": {
