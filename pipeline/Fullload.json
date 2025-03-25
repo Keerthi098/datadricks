@@ -63,7 +63,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "select * from @{item().}",
+										"value": "select * from @{item().srcschema}.@{item().srctable}\r\nwhere is_active=1;",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
