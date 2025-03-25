@@ -143,7 +143,17 @@
 										"outputs": [
 											{
 												"referenceName": "Parquet1",
-												"type": "DatasetReference"
+												"type": "DatasetReference",
+												"parameters": {
+													"sink_container": {
+														"value": "@item().global",
+														"type": "Expression"
+													},
+													"sink_folder": {
+														"value": "@item().sinkfolder",
+														"type": "Expression"
+													}
+												}
 											}
 										]
 									}
