@@ -180,6 +180,19 @@
 											"secureInput": false
 										},
 										"userProperties": [],
+										"typeProperties": {
+											"storedProcedureName": "[dbo].[tblconfig_usp]",
+											"storedProcedureParameters": {
+												"id": {
+													"value": "",
+													"type": "Int32"
+												},
+												"lpv_param": {
+													"value": "",
+													"type": "String"
+												}
+											}
+										},
 										"linkedServiceName": {
 											"referenceName": "SQLdatabase_Keerthi",
 											"type": "LinkedServiceReference"
