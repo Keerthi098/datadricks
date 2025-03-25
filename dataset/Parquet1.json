@@ -11,6 +11,9 @@
 			},
 			"sink_folder": {
 				"type": "string"
+			},
+			"sink_table": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
