@@ -149,6 +149,43 @@
 									"type": "DatasetReference"
 								}
 							}
+						},
+						{
+							"name": "Stored procedure1",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "Copy data1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[tblconfig_usp]",
+								"storedProcedureParameters": {
+									"id": {
+										"value": "",
+										"type": "Int32"
+									},
+									"lpv_param": {
+										"value": "",
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "SQLdatabase_Keerthi",
+								"type": "LinkedServiceReference"
+							}
 						}
 					]
 				}
