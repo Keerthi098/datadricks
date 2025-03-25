@@ -41,10 +41,6 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"items": {
-						"value": "@activity('Fulload_pipeline_lookup').output.value",
-						"type": "Expression"
-					},
 					"isSequential": true
 				}
 			}
