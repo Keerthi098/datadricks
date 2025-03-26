@@ -170,6 +170,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
+								"storedProcedureName": "[dbo].[tblconfig_INC_FULL]",
 								"storedProcedureParameters": {
 									"id": {
 										"value": {
