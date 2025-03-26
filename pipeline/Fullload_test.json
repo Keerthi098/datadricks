@@ -211,14 +211,7 @@
 						{
 							"name": "Copy data1_copy1",
 							"type": "Copy",
-							"dependsOn": [
-								{
-									"activity": "Lookup1_copy1",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
+							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
 								"retry": 0,
@@ -284,41 +277,6 @@
 							]
 						},
 						{
-							"name": "Lookup1_copy1",
-							"type": "Lookup",
-							"dependsOn": [
-								{
-									"activity": "If Condition1",
-									"dependencyConditions": [
-										"Skipped"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "AzureSqlSource",
-									"sqlReaderQuery": {
-										"value": "select max(@{item().deltacol}) as maxvalue from @{item().srcschema}.@{item().srctable}",
-										"type": "Expression"
-									},
-									"queryTimeout": "02:00:00",
-									"partitionOption": "None"
-								},
-								"dataset": {
-									"referenceName": "AzureSqlTable1",
-									"type": "DatasetReference"
-								}
-							}
-						},
-						{
 							"name": "Stored procedure1_copy1",
 							"type": "SqlServerStoredProcedure",
 							"dependsOn": [
@@ -370,7 +328,112 @@
 								"expression": {
 									"value": "@equals(item().lpv,0 )",
 									"type": "Expression"
-								}
+								},
+								"ifTrueActivities": [
+									{
+										"name": "Lookup1_copy1",
+										"type": "Lookup",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "AzureSqlSource",
+												"sqlReaderQuery": {
+													"value": "select max(@{item().deltacol}) as maxvalue from @{item().srcschema}.@{item().srctable}",
+													"type": "Expression"
+												},
+												"queryTimeout": "02:00:00",
+												"partitionOption": "None"
+											},
+											"dataset": {
+												"referenceName": "AzureSqlTable1",
+												"type": "DatasetReference"
+											}
+										}
+									},
+									{
+										"name": "Copy data1_copy1_copy1",
+										"type": "Copy",
+										"dependsOn": [
+											{
+												"activity": "Lookup1_copy1",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "AzureSqlSource",
+												"sqlReaderQuery": {
+													"value": "select * from @{item().srcschema}.@{item().srctable};",
+													"type": "Expression"
+												},
+												"queryTimeout": "02:00:00",
+												"partitionOption": "None"
+											},
+											"sink": {
+												"type": "ParquetSink",
+												"storeSettings": {
+													"type": "AzureBlobFSWriteSettings"
+												},
+												"formatSettings": {
+													"type": "ParquetWriteSettings"
+												}
+											},
+											"enableStaging": false,
+											"translator": {
+												"type": "TabularTranslator",
+												"typeConversion": true,
+												"typeConversionSettings": {
+													"allowDataTruncation": true,
+													"treatBooleanAsNumber": false
+												}
+											}
+										},
+										"inputs": [
+											{
+												"referenceName": "AzureSqlTable1",
+												"type": "DatasetReference"
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "Parquet1",
+												"type": "DatasetReference",
+												"parameters": {
+													"sink_container": {
+														"value": "@item().sinkcontainer\r\n",
+														"type": "Expression"
+													},
+													"sink_folder": {
+														"value": "@item().sinkfolder",
+														"type": "Expression"
+													},
+													"sink_table": {
+														"value": "@concat(formatDateTime(utcNow(),'yyyy/MM/dd'),item().srctable)",
+														"type": "Expression"
+													}
+												}
+											}
+										]
+									}
+								]
 							}
 						}
 					]
