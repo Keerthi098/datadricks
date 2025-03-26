@@ -1,5 +1,5 @@
 {
-	"name": "test",
+	"name": "test2",
 	"properties": {
 		"activities": [
 			{
@@ -89,7 +89,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "globalstore",
-							"filename": "Fullload.csv"
+							"filename": "Incremental.csv"
 						}
 					}
 				],
@@ -99,7 +99,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "globaltestoutput",
-							"filename": "Fullload.csv"
+							"filename": "Incremental.csv"
 						}
 					}
 				]
@@ -129,7 +129,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "globalstore",
-							"filename": "Fullload.csv"
+							"filename": "Incremental.csv"
 						}
 					},
 					"enableLogging": false,

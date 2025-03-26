@@ -1,5 +1,5 @@
 {
-	"name": "Fullload_test",
+	"name": "pipeline2",
 	"properties": {
 		"activities": [
 			{
@@ -34,33 +34,6 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"pipeline": {
-						"referenceName": "Fullload",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true
-				}
-			},
-			{
-				"name": "Execute Pipeline3",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Execute Pipeline1",
-						"dependencyConditions": [
-							"Failed"
-						]
-					}
-				],
-				"policy": {
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "Incremental_load_ps",
-						"type": "PipelineReference"
-					},
 					"waitOnCompletion": true
 				}
 			}
