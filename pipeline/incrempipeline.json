@@ -61,7 +61,8 @@
 						"referenceName": "ds_azuresqldb_carsales",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "source_salesdata"
+							"table_name": "source_salesdata",
+							"schema_name": "dbo"
 						}
 					}
 				],
@@ -95,7 +96,8 @@
 						"referenceName": "ds_azuresqldb_carsales",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "WATER_TABLE"
+							"table_name": "WATER_TABLE",
+							"schema_name": "dbo"
 						}
 					},
 					"firstRowOnly": false
@@ -124,7 +126,8 @@
 						"referenceName": "ds_azuresqldb_carsales",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "source_salesdata"
+							"table_name": "source_salesdata",
+							"schema_name": "dbo"
 						}
 					},
 					"firstRowOnly": false
