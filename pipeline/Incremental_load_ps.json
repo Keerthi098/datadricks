@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select * from [dbo].[tblconfig] where is_active=1",
+						"sqlReaderQuery": "select * from dbo.Pipeline_INC_FULLtblconfig where is_active=1",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
