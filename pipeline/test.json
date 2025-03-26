@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "metasource",
+						"referenceName": "store_Full_trigger",
 						"type": "DatasetReference"
 					},
 					"fieldList": [],

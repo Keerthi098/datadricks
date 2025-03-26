@@ -1,0 +1,23 @@
+{
+	"name": "store_Full_trigger",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage_carsales",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Fullload.csv",
+				"fileSystem": "globalstore"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
