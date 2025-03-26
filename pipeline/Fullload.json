@@ -70,7 +70,7 @@
 								"source": {
 									"type": "AzureSqlSource",
 									"sqlReaderQuery": {
-										"value": "select * from @{item().srcschema}.@{item().srctable},'.CSV';",
+										"value": "select * from @{item().srcschema}.@{item().srctable};",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
