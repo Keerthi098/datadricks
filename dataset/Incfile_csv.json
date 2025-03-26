@@ -1,0 +1,29 @@
+{
+	"name": "Incfile_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage_carsales",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sink_container": {
+				"type": "string"
+			},
+			"sink_folder": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

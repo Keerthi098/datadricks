@@ -116,12 +116,14 @@
 												"partitionOption": "None"
 											},
 											"sink": {
-												"type": "ParquetSink",
+												"type": "DelimitedTextSink",
 												"storeSettings": {
 													"type": "AzureBlobFSWriteSettings"
 												},
 												"formatSettings": {
-													"type": "ParquetWriteSettings"
+													"type": "DelimitedTextWriteSettings",
+													"quoteAllText": true,
+													"fileExtension": ".txt"
 												}
 											},
 											"enableStaging": false,
@@ -142,22 +144,8 @@
 										],
 										"outputs": [
 											{
-												"referenceName": "Parquet1",
-												"type": "DatasetReference",
-												"parameters": {
-													"sink_container": {
-														"value": "@item().sinkcontainer",
-														"type": "Expression"
-													},
-													"sink_folder": {
-														"value": "@item().sinkfolder_INC",
-														"type": "Expression"
-													},
-													"sink_table": {
-														"value": "@concat(formatDateTime(utcNow(),'yyyy/MM/dd'),'/',item().srctable)",
-														"type": "Expression"
-													}
-												}
+												"referenceName": "Incfile_csv",
+												"type": "DatasetReference"
 											}
 										]
 									},
@@ -181,6 +169,7 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
+											"storedProcedureName": "[dbo].[tblconfig_INC_FULL]",
 											"storedProcedureParameters": {
 												"id": {
 													"value": {
