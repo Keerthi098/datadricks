@@ -211,7 +211,8 @@
 									"Tablename": {
 										"value": "@item().srctable",
 										"type": "Expression"
-									}
+									},
+									"load_date": "@formatDateTime(utcNow(),'yyyy/MM/dd')"
 								}
 							},
 							"linkedServiceName": {
