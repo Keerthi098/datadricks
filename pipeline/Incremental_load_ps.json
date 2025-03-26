@@ -149,7 +149,10 @@
 												"parameters": {
 													"sink_container": "@item().sinkcontainer",
 													"sink_folder": "@item().sinkfolder_INC",
-													"sink_table": "@concat(formatDateTime(utcNow(),'yyyy/MM/dd'),'/',item().srctable)"
+													"sink_table": {
+														"value": "@concat(formatDateTime(utcNow(),'yyyy/MM/dd'), '/', item().srctable, '.csv')",
+														"type": "Expression"
+													}
 												}
 											}
 										]
