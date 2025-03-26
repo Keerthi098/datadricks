@@ -178,12 +178,14 @@
 											"partitionOption": "None"
 										},
 										"sink": {
-											"type": "ParquetSink",
+											"type": "DelimitedTextSink",
 											"storeSettings": {
 												"type": "AzureBlobFSWriteSettings"
 											},
 											"formatSettings": {
-												"type": "ParquetWriteSettings"
+												"type": "DelimitedTextWriteSettings",
+												"quoteAllText": true,
+												"fileExtension": ".txt"
 											}
 										},
 										"enableStaging": false,
@@ -205,21 +207,12 @@
 									],
 									"outputs": [
 										{
-											"referenceName": "Parquet1",
+											"referenceName": "Incfile_csv",
 											"type": "DatasetReference",
 											"parameters": {
-												"sink_container": {
-													"value": "@item().sinkcontainer\r\n",
-													"type": "Expression"
-												},
-												"sink_folder": {
-													"value": "@item().sinkfolder_Full",
-													"type": "Expression"
-												},
-												"sink_table": {
-													"value": "@concat(formatDateTime(utcNow(),'yyyy/MM/dd'),'/',item().srctable)",
-													"type": "Expression"
-												}
+												"sink_container": "@item().sinkcontainer",
+												"sink_folder": "@item().sinkfolder_Full",
+												"sink_table": "@concat(formatDateTime(utcNow(),'yyyy/MM/dd'),'/',item().srctable)"
 											}
 										}
 									]
@@ -295,6 +288,40 @@
 										"referenceName": "SQLdatabase_Keerthi",
 										"type": "LinkedServiceReference"
 									}
+								},
+								{
+									"name": "Notebook1",
+									"type": "DatabricksNotebook",
+									"dependsOn": [
+										{
+											"activity": "Stored procedure1",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"notebookPath": "/Repos/venkimelbourne_yahoo.com.au#ext#@venkimelbourneyahoocom.onmicrosoft.com/rajdatabricks/GIT folder/Project_INC_FULL/Silver_layer",
+										"baseParameters": {
+											"Tablename": {
+												"value": "@item().srctable",
+												"type": "Expression"
+											},
+											"load_date": "@formatDateTime(utcNow(),'yyyy/MM/dd')"
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "odata_databricks",
+										"type": "LinkedServiceReference"
+									}
 								}
 							]
 						}
@@ -312,8 +339,9 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]",
-				"[concat(variables('factoryId'), '/datasets/Parquet1')]",
-				"[concat(variables('factoryId'), '/linkedServices/SQLdatabase_Keerthi')]"
+				"[concat(variables('factoryId'), '/datasets/Incfile_csv')]",
+				"[concat(variables('factoryId'), '/linkedServices/SQLdatabase_Keerthi')]",
+				"[concat(variables('factoryId'), '/linkedServices/odata_databricks')]"
 			]
 		},
 		{
@@ -564,12 +592,14 @@
 														"partitionOption": "None"
 													},
 													"sink": {
-														"type": "ParquetSink",
+														"type": "DelimitedTextSink",
 														"storeSettings": {
 															"type": "AzureBlobFSWriteSettings"
 														},
 														"formatSettings": {
-															"type": "ParquetWriteSettings"
+															"type": "DelimitedTextWriteSettings",
+															"quoteAllText": true,
+															"fileExtension": ".txt"
 														}
 													},
 													"enableStaging": false,
@@ -591,21 +621,12 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "Parquet1",
+														"referenceName": "Incfile_csv",
 														"type": "DatasetReference",
 														"parameters": {
-															"sink_container": {
-																"value": "@item().sinkcontainer",
-																"type": "Expression"
-															},
-															"sink_folder": {
-																"value": "@item().sinkfolder_INC",
-																"type": "Expression"
-															},
-															"sink_table": {
-																"value": "@concat(formatDateTime(utcNow(),'yyyy/MM/dd'),'/',item().srctable)",
-																"type": "Expression"
-															}
+															"sink_container": "@item().sinkcontainer",
+															"sink_folder": "@item().sinkfolder_INC",
+															"sink_table": "@concat(formatDateTime(utcNow(),'yyyy/MM/dd'),'/',item().srctable)"
 														}
 													}
 												]
@@ -672,7 +693,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]",
-				"[concat(variables('factoryId'), '/datasets/Parquet1')]",
+				"[concat(variables('factoryId'), '/datasets/Incfile_csv')]",
 				"[concat(variables('factoryId'), '/linkedServices/SQLdatabase_Keerthi')]"
 			]
 		},
@@ -3899,6 +3920,55 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/dataflowsource')]",
 				"[concat(variables('factoryId'), '/datasets/dataflowoutput')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Incfile_csv')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage_carsales",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"sink_container": {
+						"type": "string"
+					},
+					"sink_folder": {
+						"type": "string"
+					},
+					"sink_table": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().sink_table",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().sink_folder",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().sink_container",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": false,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_carsales')]"
 			]
 		}
 	]
