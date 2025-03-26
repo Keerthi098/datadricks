@@ -181,7 +181,6 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
-											"storedProcedureName": "[dbo].[tblconfig_usp]",
 											"storedProcedureParameters": {
 												"id": {
 													"value": {
