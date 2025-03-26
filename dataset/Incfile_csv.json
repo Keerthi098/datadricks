@@ -11,13 +11,28 @@
 			},
 			"sink_folder": {
 				"type": "string"
+			},
+			"sink_table": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation"
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().sink_table",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().sink_folder",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().sink_container",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
