@@ -200,7 +200,8 @@
 						"referenceName": "ds_azuresqldb_carsales",
 						"type": "DatasetReference",
 						"parameters": {
-							"table_name": "source_salesdata"
+							"table_name": "source_salesdata",
+							"schema_name": "dbo"
 						}
 					}
 				]
