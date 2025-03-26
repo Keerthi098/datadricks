@@ -117,7 +117,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderQuery": "select * from [dbo].pipelineconfig where is_active=1",
+								"sqlReaderQuery": "select * from dbo.Pipeline_INC_FULLtblconfig where is_active=1",
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},
@@ -213,7 +213,7 @@
 													"type": "Expression"
 												},
 												"sink_folder": {
-													"value": "@item().sinkfolder",
+													"value": "@item().sinkfolder_Full",
 													"type": "Expression"
 												},
 												"sink_table": {
@@ -273,7 +273,7 @@
 									},
 									"userProperties": [],
 									"typeProperties": {
-										"storedProcedureName": "[[dbo].[pipelinelogupdate]",
+										"storedProcedureName": "[[dbo].[tblconfig_INC_FULL]",
 										"storedProcedureParameters": {
 											"id": {
 												"value": {
@@ -463,7 +463,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "AzureSqlSource",
-								"sqlReaderQuery": "select * from [dbo].[tblconfig] where is_active=1",
+								"sqlReaderQuery": "select * from dbo.Pipeline_INC_FULLtblconfig where is_active=1",
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},
@@ -599,7 +599,7 @@
 																"type": "Expression"
 															},
 															"sink_folder": {
-																"value": "@item().sinkfolder",
+																"value": "@item().sinkfolder_INC",
 																"type": "Expression"
 															},
 															"sink_table": {
@@ -630,7 +630,7 @@
 												},
 												"userProperties": [],
 												"typeProperties": {
-													"storedProcedureName": "[[dbo].[tblconfig_usp]",
+													"storedProcedureName": "[[dbo].[tblconfig_INC_FULL]",
 													"storedProcedureParameters": {
 														"id": {
 															"value": {
