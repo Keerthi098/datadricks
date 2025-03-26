@@ -35,9 +35,17 @@
 			"type": "string",
 			"defaultValue": "https://newmetastoragekeerthi.dfs.core.windows.net/"
 		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0312-014713-52b0ds2l"
+		},
 		"LS_GIT_CARSALES_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/"
+		},
+		"Ls_KeyVault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://GnanviKeyVault.vault.azure.net/"
 		},
 		"Nyc_API_properties_typeProperties_url": {
 			"type": "string",
@@ -82,14 +90,6 @@
 		"triggermainpipleline_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/fac761bc-591f-4960-a223-235bf8f2fced/resourceGroups/keerthinyctaxi/providers/Microsoft.Storage/storageAccounts/anvitaxidatalake"
-		},
-		"Ls_KeyVault_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://GnanviKeyVault.vault.azure.net/"
-		},
-		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
-			"type": "string",
-			"defaultValue": "0312-014713-52b0ds2l"
 		},
 		"containerUri": {
 			"type": "string",
@@ -142,6 +142,9 @@
 					"LS_GIT_CARSALES_properties_typeProperties_url": {
 						"value": "[parameters('LS_GIT_CARSALES_properties_typeProperties_url')]"
 					},
+					"Ls_KeyVault_properties_typeProperties_baseUrl": {
+						"value": "[parameters('Ls_KeyVault_properties_typeProperties_baseUrl')]"
+					},
 					"Nyc_API_properties_typeProperties_url": {
 						"value": "[parameters('Nyc_API_properties_typeProperties_url')]"
 					},
@@ -165,9 +168,6 @@
 					},
 					"odata_databricks_properties_typeProperties_existingClusterId": {
 						"value": "[parameters('odata_databricks_properties_typeProperties_existingClusterId')]"
-					},
-					"Ls_KeyVault_properties_typeProperties_baseUrl": {
-						"value": "[parameters('Ls_KeyVault_properties_typeProperties_baseUrl')]"
 					}
 				}
 			},
