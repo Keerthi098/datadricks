@@ -368,7 +368,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@i",
+									"value": "@equals(item().lpv,0 )",
 									"type": "Expression"
 								}
 							}
