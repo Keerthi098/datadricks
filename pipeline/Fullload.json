@@ -170,7 +170,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "[dbo].[pipelinelogupdate]",
+								"storedProcedureName": "d",
 								"storedProcedureParameters": {
 									"id": {
 										"value": {
