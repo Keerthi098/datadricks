@@ -145,7 +145,12 @@
 										"outputs": [
 											{
 												"referenceName": "Incfile_csv",
-												"type": "DatasetReference"
+												"type": "DatasetReference",
+												"parameters": {
+													"sink_container": "@item().sinkcontainer",
+													"sink_folder": "@item().sinkfolder_INC",
+													"sink_table": "@concat(formatDateTime(utcNow(),'yyyy/MM/dd'),'/',item().srctable)"
+												}
 											}
 										]
 									},
