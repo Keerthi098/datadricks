@@ -111,7 +111,7 @@
 											"type": "Expression"
 										},
 										"sink_folder": {
-											"value": "@item().sinkfolder",
+											"value": "@item().sinkfolder_Full",
 											"type": "Expression"
 										},
 										"sink_table": {
