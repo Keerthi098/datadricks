@@ -17,6 +17,32 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/dataflowoutput')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "csvfiles",
+						"fileSystem": "dataflowoutput"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/dataflowsource')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -449,53 +475,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Incfile_csv')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage_carsales",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"sink_container": {
-						"type": "string"
-					},
-					"sink_folder": {
-						"type": "string"
-					},
-					"sink_table": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": {
-							"value": "@dataset().sink_table",
-							"type": "Expression"
-						},
-						"folderPath": {
-							"value": "@dataset().sink_folder",
-							"type": "Expression"
-						},
-						"fileSystem": {
-							"value": "@dataset().sink_container",
-							"type": "Expression"
-						}
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": false,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/Fullload')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -611,7 +590,10 @@
 											"parameters": {
 												"sink_container": "@item().sinkcontainer",
 												"sink_folder": "@item().sinkfolder_Full",
-												"sink_table": "@concat(formatDateTime(utcNow(),'yyyy/MM/dd'),'/',item().srctable)"
+												"sink_table": {
+													"value": "@concat(formatDateTime(utcNow(),'yyyy/MM/dd'), '/', item().srctable, '.csv')",
+													"type": "Expression"
+												}
 											}
 										}
 									]
@@ -714,7 +696,10 @@
 												"value": "@item().srctable",
 												"type": "Expression"
 											},
-											"load_date": "@formatDateTime(utcNow(),'yyyy/MM/dd')"
+											"load_date": {
+												"value": "@formatDateTime(utcNow(),'yyyy/MM/dd')",
+												"type": "Expression"
+											}
 										}
 									},
 									"linkedServiceName": {
@@ -736,9 +721,7 @@
 				},
 				"annotations": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Incfile_csv')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Inc')]",
@@ -937,7 +920,10 @@
 														"parameters": {
 															"sink_container": "@item().sinkcontainer",
 															"sink_folder": "@item().sinkfolder_INC",
-															"sink_table": "@concat(formatDateTime(utcNow(),'yyyy/MM/dd'),'/',item().srctable)"
+															"sink_table": {
+																"value": "@concat(formatDateTime(utcNow(),'yyyy/MM/dd'), '/', item().srctable, '.csv')",
+																"type": "Expression"
+															}
 														}
 													}
 												]
@@ -1002,9 +988,7 @@
 				},
 				"annotations": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Incfile_csv')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Incremental_odata')]",
