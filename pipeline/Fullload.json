@@ -246,7 +246,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"notebookPath": "/Repos/venkimelbourne_yahoo.com.au#ext#@venkimelbourneyahoocom.onmicrosoft.com/rajdatabricks/GIT folder/Project_INC_FULL"
+								"notebookPath": "/Repos/venkimelbourne_yahoo.com.au#ext#@venkimelbourneyahoocom.onmicrosoft.com/rajdatabricks/GIT folder/Project_INC_FULL/Gold Layer"
 							},
 							"linkedServiceName": {
 								"referenceName": "odata_databricks",
