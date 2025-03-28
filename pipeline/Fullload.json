@@ -227,8 +227,8 @@
 							}
 						},
 						{
-							"name": "Notebook2",
-							"type": "SynapseNotebook",
+							"name": "Notebook3",
+							"type": "DatabricksNotebook",
 							"dependsOn": [
 								{
 									"activity": "Notebook1",
@@ -245,8 +245,9 @@
 								"secureInput": false
 							},
 							"userProperties": [],
-							"typeProperties": {
-								"snapshot": true
+							"linkedServiceName": {
+								"referenceName": "odata_databricks",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
