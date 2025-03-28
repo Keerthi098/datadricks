@@ -245,6 +245,9 @@
 								"secureInput": false
 							},
 							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": "/Repos/venkimelbourne_yahoo.com.au#ext#@venkimelbourneyahoocom.onmicrosoft.com/rajdatabricks/GIT folder/Project_INC_FULL"
+							},
 							"linkedServiceName": {
 								"referenceName": "odata_databricks",
 								"type": "LinkedServiceReference"
