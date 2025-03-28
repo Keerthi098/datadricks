@@ -215,12 +215,38 @@
 										"value": "@item().srctable",
 										"type": "Expression"
 									},
-									"load_date": "@formatDateTime(utcNow(),'yyyy/MM/dd')"
+									"load_date": {
+										"value": "@formatDateTime(utcNow(),'yyyy/MM/dd')",
+										"type": "Expression"
+									}
 								}
 							},
 							"linkedServiceName": {
 								"referenceName": "odata_databricks",
 								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "Notebook2",
+							"type": "SynapseNotebook",
+							"dependsOn": [
+								{
+									"activity": "Notebook1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"snapshot": true
 							}
 						}
 					]
